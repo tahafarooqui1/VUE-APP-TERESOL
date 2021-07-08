@@ -28,21 +28,11 @@ app.get('/api/accountinfo/get',(req,res) => {
     console.error(err.message)
   })
 })
-//CREATE A VERTEX
-app.get('/api/createAcount',(req,res)=>{
-  db.connect().then(async ()=>{ 
-  rss=await db.command("INSERT INTO accountinfo (name, address, nationality, age, amount, accountno, created) VALUES ('TTT', 'lahore', 'pakistan', '31', '12340', '808080','12/02/2021')")
-  res.send("Data is inserted"); 
-  }).catch(err=>{
-  console.error(err.message) 
-  }) 
-  } 
-  );
-  
-  //UPDATE ACCOUNT INFO
-app.put('/api/accountinfo/put',(req,res) => {
+//UPDATE A VERTEX
+app.put('/api/accountinfo/update',(req,res) => {
   db.connect().then(async ()=>{
-    const result=await db.command('Insert into accounts set name = "king",amount = 233, address= "Usmfdfefefeanffefe", nationality= "Ataahammefefari", created = "232323", id ="1111", age=25 ');
+    //const result=await db.command('Insert into accounts set name = "king",amount = "233", address= "Usmfdfefefeanffefe", nationality= "Ataahammefefari", created = "232323", id ="1111", age=25 ');
+    const result=await db.command('UPDATE accounts SET name = "taham",amount = "23355", address= "FEFEUsmfdfefefeanffefe", nationality= "Ataahammefefari", created = "23232223", id ="111331", age=30 WHERE @rid=#34:0');
     console.log(result)
       //res.send(result);
     
@@ -50,7 +40,31 @@ app.put('/api/accountinfo/put',(req,res) => {
     console.error(err.message)
   })
 })
-
+  
+  //ADD A NEW VERTEX
+app.put('/api/accountinfo/add',(req,res) => {
+  db.connect().then(async ()=>{
+    const result=await db.command('Insert into accounts set name = "aoubhfiusgvfvddvwd",amount = "233", address= "Usmfdfefefeanffefe", nationality= "Ataahammefefari", created = "232323", id ="1111", age=25 ');
+   // const result=await db.command('UPDATE accounts SET name = "king",amount = 233, address= "Usmfdfefefeanffefe", nationality= "Ataahammefefari", created = "232323", id ="1111", age=25 WHERE @rid=#34:0');
+    console.log(result)
+      //res.send(result);
+    
+  }).catch(err=>{
+    console.error(err.message)
+  })
+})
+//DELETE A VERTEX
+app.delete('/api/accountinfo/delete',(req,res) => {
+  db.connect().then(async ()=>{
+    //const result=await db.command('Insert into accounts set name = "king",amount = "233", address= "Usmfdfefefeanffefe", nationality= "Ataahammefefari", created = "232323", id ="1111", age=25 ');
+    const result=await db.command('DELETE FROM accounts WHERE name="potato"');
+    console.log(result)
+      res.send("DELETED");
+    
+  }).catch(err=>{
+    console.error(err.message)
+  })
+})
 
 
 
